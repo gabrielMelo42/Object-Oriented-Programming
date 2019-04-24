@@ -1,4 +1,4 @@
-package EP1;
+import java.time.LocalDateTime;
 
 class Participante 
 {
