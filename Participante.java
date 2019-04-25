@@ -2,11 +2,11 @@ import java.time.LocalDateTime;
 
 class Participante 
 {
-    public String nome;
+    public String email;
     public LocalDateTime inicioP;
     public LocalDateTime fimP;
 
-    public Participante(String nome) {
-        this.nome = nome;
+    public Participante(String email) {
+        this.email = email;
     }
 }
