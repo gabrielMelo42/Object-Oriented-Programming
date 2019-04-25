@@ -26,8 +26,8 @@ public class MarcadorReuniao
                 break;
             i++;
         }
-        _listaDePessoas.get(i).inicioP = inicio;
-        _listaDePessoas.get(i).fimP = fim;
+        _listaDePessoas.get(i).inicioP.add(inicio);
+        _listaDePessoas.get(i).fimP.add(fim);
     }
 
     public void mostraSobreposicao() 

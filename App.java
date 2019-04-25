@@ -35,6 +35,32 @@ class App
         }
         reuniao.marcarReuniaoEntre(auxDataInicial, auxDataFinal, emails);
 
+        //inserindo informações dos participantes
+        String auxEmail = "";
+        LocalDateTime auxInicio;
+        LocalDateTime auxFim;
+        System.out.println("\nInsira as disponibilidades dos partipantes: ");
+        while(true)
+        {
+            System.out.print("Email: ");
+            auxEmail = sc.nextLine();
+
+            System.out.print("Inicio do periodo disponivel(dd/mm/aaaa hh:mm): ");
+            dIni = sc.nextLine().split("/| |:");
+            auxInicio = LocalDateTime.of(Integer.valueOf(dIni[2]), Integer.valueOf(dIni[1]), Integer.valueOf(dIni[0]), Integer.valueOf(dIni[3]), Integer.valueOf(dIni[4]));
+
+            System.out.print("Final do periodo disponivel(dd/mm/aaaa hh:mm): ");
+            dFim = sc.nextLine().split("/| |:");
+            auxFim = LocalDateTime.of(Integer.valueOf(dFim[2]), Integer.valueOf(dFim[1]), Integer.valueOf(dFim[0]), Integer.valueOf(dFim[3]), Integer.valueOf(dFim[4]));
+            
+            reuniao.indicaDisponibilidade(auxEmail, auxInicio, auxFim);
+            System.out.print("Deseja inserir mais uma disponibilidade(s/n):");
+            if (sc.nextLine().charAt(0) == 'n')
+                break;
+            else
+                System.out.println();
+        }
+
         
     }
 }
