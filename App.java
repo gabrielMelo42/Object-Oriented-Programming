@@ -53,6 +53,12 @@ class App
             dFim = sc.nextLine().split("/| |:");
             auxFim = LocalDateTime.of(Integer.valueOf(dFim[2]), Integer.valueOf(dFim[1]), Integer.valueOf(dFim[0]), Integer.valueOf(dFim[3]), Integer.valueOf(dFim[4]));
             
+            //colocar num metodo esses testes todos, esse metodo está em marcadorreuniao
+            if(auxInicio.isAfter(auxFim)){
+                System.out.println("A data inicial deve ser apos a data inicial, por favor :)");
+                break;
+            }
+
             reuniao.indicaDisponibilidade(auxEmail, auxInicio, auxFim);
             System.out.print("Deseja inserir mais uma disponibilidade(s/n):");
             if (sc.nextLine().charAt(0) == 'n')
@@ -61,6 +67,5 @@ class App
                 System.out.println();
         }
 
-        
     }
 }
