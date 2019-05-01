@@ -2,42 +2,129 @@
 //Numero USP: 10724312
 
 //Matheus Morandino di Giovanni Carneiro
-//Numero USP:
+//Numero USP: 10724347
 
-O relatorio consiste nas entradas e saidas de teste do EP1 de COO
-A classe principal eh App.java
+A classe principal eh Testes.java, e esta que devera ser chamada
+Antes de cada teste propriamente dito ha a impressao
+ "-=-=-=-=-=-=-=Reuniao i-=-=-=-=-=-=-=", em que i eh o numero da reuniao e portanto o numero do teste-exemplo.
+Os testes estao dentro da classe Testes.java:
 
 Exemplo 1:
-Entrada:
-01/01/2019
-31/12/2019
-30joao
-maria
-jose
-break
-joao
-03/03/2019 15:00
-03/03/2019 18:00
-s
-maria
-03/03/2019 12:00
- 03/03/2019 19:00
- s
- jose
- 03/03/2019 00:00
- 04/03/2019 12:00
- s
- joao
- 04/04/2019 12:00
- 05/05/2019 15:00
- s
- maria
- 05/04/2019 14:00
- 03/05/2019 11:00
- s
- jose
- 06/04/2019 15:00
- 02/05/2019 16:00
- n
- 
+static void teste1(MarcadorReuniao reuniao)
+    {
+        Collection<String> emails = new ArrayList<String>();
+
+        LocalDate dataInicial = LocalDate.of(2019, 04, 20);
+        LocalDate dataFinal = LocalDate.of(2019, 04, 23);
+
+        emails.add("ana");
+        emails.add("paulo");
+        emails.add("lucas");
+        // emails.add("julio");
+
+        reuniao.marcarReuniaoEntre(dataInicial, dataFinal, emails);
+        reuniao.carregaTempoMinimo(30);
+
+        reuniao.indicaDisponibilidade("ana", LocalDateTime.of(2019, 04, 20, 15, 00),
+                LocalDateTime.of(2019, 04, 21, 18, 00));
+        reuniao.indicaDisponibilidade("paulo", LocalDateTime.of(2019, 04, 21, 12, 00),
+                LocalDateTime.of(2019, 04, 21, 20, 00));
+        reuniao.indicaDisponibilidade("ana", LocalDateTime.of(2019, 04, 23, 12, 00),
+                LocalDateTime.of(2019, 04, 23, 22, 00));
+        reuniao.indicaDisponibilidade("lucas", LocalDateTime.of(2019, 04, 20, 14, 00),
+                LocalDateTime.of(2019, 04, 23, 22, 00));
+        reuniao.indicaDisponibilidade("paulo", LocalDateTime.of(2019, 04, 22, 16, 00),
+                LocalDateTime.of(2019, 04, 23, 14, 00));
+        // reuniao.indicaDisponibilidade("julio", LocalDateTime.of(2019, 04, 21, 06,
+        // 00), LocalDateTime.of(2019, 04, 22, 00, 00));
+
+        reuniao.mostraSobreposicao();
+    }
+    
  Saida:
+ -=-=-=-=-=-=-=Reuniao 1-=-=-=-=-=-=-=
+1º janela de oportunidade: 
+Horario de inicio: 2019-04-21T12:00
+Horario de fim: 2019-04-21T18:00
+
+2º janela de oportunidade: 
+Horario de inicio: 2019-04-23T12:00
+Horario de fim: 2019-04-23T14:00
+
+
+
+Exemplo2:
+static void teste2(MarcadorReuniao reuniao)
+    {
+        Collection<String> emails = new ArrayList<String>();
+
+        LocalDate dataInicial = LocalDate.of(2019, 05, 01);
+        LocalDate dataFinal = LocalDate.of(2019, 05, 07);
+
+        emails.add("oliveira.8102@usp.br");
+        emails.add("matheus2060@usp.br");
+        emails.add("laiscarraro@usp.br");
+        emails.add("andre.casaes@usp.br");
+
+        reuniao.marcarReuniaoEntre(dataInicial, dataFinal, emails);
+        reuniao.carregaTempoMinimo(45);
+
+        reuniao.indicaDisponibilidade("oliveira.8102@usp.br", LocalDateTime.of(2019, 05, 02, 19, 00),
+                LocalDateTime.of(2019, 05, 02, 22, 00));
+        reuniao.indicaDisponibilidade("matheus2060@usp.br", LocalDateTime.of(2019, 05, 05, 12, 00),
+                LocalDateTime.of(2019, 05, 05, 14, 00));
+        reuniao.indicaDisponibilidade("laiscarraro@usp.br", LocalDateTime.of(2019, 05, 05, 13, 00),
+                LocalDateTime.of(2019, 05, 05, 14, 00));
+        reuniao.indicaDisponibilidade("andre.casaes@usp.br", LocalDateTime.of(2019, 05, 05, 13, 05),
+                LocalDateTime.of(2019, 05, 05, 13, 50));
+        reuniao.indicaDisponibilidade("matheus2060@usp.br", LocalDateTime.of(2019, 5, 06, 13, 45),
+                LocalDateTime.of(2019, 05, 07, 14, 00));
+        reuniao.indicaDisponibilidade("oliveira.8102@usp.br", LocalDateTime.of(2019, 5, 5, 10, 00),
+                LocalDateTime.of(2019, 05, 05, 15, 30));
+        
+                
+        reuniao.mostraSobreposicao();
+    }
+
+Saida:
+-=-=-=-=-=-=-=Reuniao 2-=-=-=-=-=-=-=
+1º janela de oportunidade: 
+Horario de inicio: 2019-05-05T13:05
+Horario de fim: 2019-05-05T13:50
+
+
+
+
+
+Exemplo 3:
+static void teste3(MarcadorReuniao reuniao)
+    {
+        Collection<String> email = new ArrayList<String>();
+        LocalDate dataInicial = LocalDate.of(2019, 8, 10);
+        LocalDate dataFinal = LocalDate.of(2019, 11, 25);
+        email.add("daniel-lima@usp.br");
+        email.add("juliapassos@usp.br");
+        email.add("oliveira.8102@usp.br");
+        email.add("matheus2060@usp.br");
+
+        reuniao.marcarReuniaoEntre(dataInicial, dataFinal, email);
+        reuniao.indicaDisponibilidade("matheus2060@usp.br", LocalDateTime.of(2019, 8, 11, 15, 30),
+                LocalDateTime.of(2019, 8, 27, 17, 45));
+        reuniao.indicaDisponibilidade("oliveira.8102@usp.br", LocalDateTime.of(2019, 8, 23, 8, 00),
+                LocalDateTime.of(2019, 8, 26, 20, 15));
+        reuniao.indicaDisponibilidade("daniel-lima@usp.br", LocalDateTime.of(2019, 8, 25, 10, 40),
+                LocalDateTime.of(2019, 8, 25, 19, 15));
+        reuniao.indicaDisponibilidade("juliapassos@usp.br", LocalDateTime.of(2019, 8, 25, 12, 10),
+                LocalDateTime.of(2019, 8, 25, 15, 35));
+        reuniao.indicaDisponibilidade("oliveira.8102@usp.br", LocalDateTime.of(2019, 10, 12, 7, 30),
+                LocalDateTime.of(2019, 10, 31, 9, 50));
+        reuniao.indicaDisponibilidade("matheus2060@usp.br", LocalDateTime.of(2019, 11, 22, 21, 00),
+                LocalDateTime.of(2019, 11, 22, 23, 00));
+        reuniao.mostraSobreposicao();
+    }
+    
+Saida:
+-=-=-=-=-=-=-=Reuniao 3-=-=-=-=-=-=-=
+1º janela de oportunidade: 
+Horario de inicio: 2019-08-25T12:10
+Horario de fim: 2019-08-25T15:35
