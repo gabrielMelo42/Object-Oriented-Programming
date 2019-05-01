@@ -1,1 +1,43 @@
-relatorio ep1
+//Gabriel Andre Melo de Oliveira Silva
+//Numero USP: 10724312
+
+//Matheus Morandino di Giovanni Carneiro
+//Numero USP:
+
+O relatorio consiste nas entradas e saidas de teste do EP1 de COO
+A classe principal eh App.java
+
+Exemplo 1:
+Entrada:
+01/01/2019
+31/12/2019
+30joao
+maria
+jose
+break
+joao
+03/03/2019 15:00
+03/03/2019 18:00
+s
+maria
+03/03/2019 12:00
+ 03/03/2019 19:00
+ s
+ jose
+ 03/03/2019 00:00
+ 04/03/2019 12:00
+ s
+ joao
+ 04/04/2019 12:00
+ 05/05/2019 15:00
+ s
+ maria
+ 05/04/2019 14:00
+ 03/05/2019 11:00
+ s
+ jose
+ 06/04/2019 15:00
+ 02/05/2019 16:00
+ n
+ 
+ Saida:
