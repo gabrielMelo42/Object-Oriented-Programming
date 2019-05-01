@@ -2,7 +2,7 @@ import java.util.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-class App 
+public class App 
 {
     public static void main(String[] args) 
     {
@@ -23,6 +23,11 @@ class App
         dFim = sc.next().split("/");
         auxDataFinal = LocalDate.of(Integer.valueOf(dFim[2]), Integer.valueOf(dFim[1]), Integer.valueOf(dFim[0]));
 
+
+        System.out.println("Qual o tempo minimo que voce deseja ter para a reuniao?");
+        int tempoMinimo=sc.nextInt();
+        reuniao.carregaTempoMinimo(tempoMinimo);
+        
         //inserindo os participantes
         System.out.println("Digite as pessoas requeridas(insira 'break' para parar): ");
         String insercao = "";
@@ -55,17 +60,54 @@ class App
             
             //colocar num metodo esses testes todos, esse metodo está em marcadorreuniao
             if(auxInicio.isAfter(auxFim)){
-                System.out.println("A data inicial deve ser apos a data inicial, por favor :)");
+                System.out.println("A data inicial deve ser apos a data inicial.\nPor favor, insira as informacoes novamente :)");
                 break;
             }
 
             reuniao.indicaDisponibilidade(auxEmail, auxInicio, auxFim);
-            System.out.print("Deseja inserir mais uma disponibilidade(s/n):");
+            System.out.print("Deseja inserir mais uma disponibilidade?\nDigite 's' para 'sim' e 'n' para nao:");
             if (sc.nextLine().charAt(0) == 'n')
                 break;
             else
                 System.out.println();
         }
+
+        
+        reuniao.mostraSobreposicao();
+
+/*aqui temos um exemplo de teste
+01/01/2019
+31/12/2019
+30
+joao
+maria
+jose
+break
+joao
+03/03/2019 15:00
+03/03/2019 18:00
+s
+maria
+03/03/2019 12:00
+ 03/03/2019 19:00
+ s
+ jose
+ 03/03/2019 00:00
+ 04/03/2019 12:00
+ s
+ joao
+ 04/04/2019 12:00
+ 05/05/2019 15:00
+ s
+ maria
+ 05/04/2019 14:00
+ 03/05/2019 11:00
+ s
+ jose
+ 06/04/2019 15:00
+ 02/05/2019 16:00
+ n*/
+
 
     }
 }
