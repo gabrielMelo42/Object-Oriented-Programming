@@ -63,23 +63,26 @@ public class App
                 System.out.println("A data inicial deve ser apos a data inicial.\nPor favor, insira as informacoes novamente :)");
                 break;
             }
+            else{
+                reuniao.indicaDisponibilidade(auxEmail, auxInicio, auxFim);
+            }
 
-            reuniao.indicaDisponibilidade(auxEmail, auxInicio, auxFim);
-            System.out.print("Deseja inserir mais uma disponibilidade?\nDigite 's' para 'sim' e 'n' para nao:");
+            System.out.print("Deseja inserir mais uma disponibilidade?\nDigite 's' para sim e 'n' para nao:");
             if (sc.nextLine().charAt(0) == 'n')
                 break;
             else
                 System.out.println();
         }
+        sc.close();
 
-        
         reuniao.mostraSobreposicao();
+    }
+}
 
 /*aqui temos um exemplo de teste
 01/01/2019
 31/12/2019
-30
-joao
+30joao
 maria
 jose
 break
@@ -108,6 +111,3 @@ maria
  02/05/2019 16:00
  n*/
 
-
-    }
-}

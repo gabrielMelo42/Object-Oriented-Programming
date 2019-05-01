@@ -8,20 +8,20 @@ class MarcadorReuniao
     static LocalDate inicioReuniao;
     static LocalDate finalReuniao;
     static int tempoMinimo;
-    static List<Participante> listaDePessoas = new ArrayList<Participante>();
-    static List<LocalDateTime[]> interseccoes = new ArrayList<LocalDateTime[]>();
+    static ArrayList<Participante> listaDePessoas = new ArrayList<Participante>();
+    static ArrayList<LocalDateTime[]> interseccoes = new ArrayList<LocalDateTime[]>();
 
-    static void marcarReuniaoEntre(LocalDate dataInicial, LocalDate dataFinal, Collection<String> listaDeParticipantes)
+    void marcarReuniaoEntre(LocalDate dataInicial, LocalDate dataFinal, Collection<String> listaDeParticipantes)
     {
         inicioReuniao = dataInicial;
         finalReuniao = dataFinal;
         
         for(String participante : listaDeParticipantes)
             listaDePessoas.add(new Participante(participante));
-        System.out.println("shvbjknlk");
+        
     }
 
-    static void indicaDisponibilidade(String participante, LocalDateTime inicio, LocalDateTime fim) 
+    void indicaDisponibilidade(String participante, LocalDateTime inicio, LocalDateTime fim) 
     {
         int i = 0;
         while(i < listaDePessoas.size())
@@ -35,12 +35,20 @@ class MarcadorReuniao
         {
             LocalDateTime[] intersec = retornaInterseccao(inicio, fim, inicioReuniao.atStartOfDay(), finalReuniao.atTime(23, 59));
 
-            listaDePessoas.get(i).inicioP.add(intersec[0]);
-            listaDePessoas.get(i).fimP.add(intersec[1]);
+            try
+            {
+                listaDePessoas.get(i).inicioP.add(intersec[0]);
+                listaDePessoas.get(i).fimP.add(intersec[1]);
+            }
+            catch(Exception e)
+            {
+                System.out.println("A pessoa em questão não foi encontrada, insira um nome válido/existente.");
+            }
+                
         }
     }
 
-    static void carregaTempoMinimo(int tempo)
+    public void carregaTempoMinimo(int tempo)
     {
         tempoMinimo = tempo;
     }
@@ -146,16 +154,22 @@ class MarcadorReuniao
         }
     }
 
-    static void mostraSobreposicao() 
+    void mostraSobreposicao() 
     {
         calculaInteseccoes(0, new LocalDateTime[2]);
-        
+
         for(int i = 0; i < interseccoes.size(); i++)
         {
             System.out.println( (i+1) + "º janela de oportunidade: ");
             System.out.println( "Horario de inicio: " + interseccoes.get(i)[0]);
             System.out.println( "Horario de fim: " + interseccoes.get(i)[1] + "\n");
         }
+
+        removeAll();
     }
 
+    public void removeAll() {
+        listaDePessoas.clear();
+        interseccoes.clear();
+    }
 }
