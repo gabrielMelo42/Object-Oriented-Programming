@@ -3,7 +3,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
-public class MarcadorReuniao 
+class MarcadorReuniao 
 {
     static LocalDate inicioReuniao;
     static LocalDate finalReuniao;
@@ -11,16 +11,17 @@ public class MarcadorReuniao
     static List<Participante> listaDePessoas = new ArrayList<Participante>();
     static List<LocalDateTime[]> interseccoes = new ArrayList<LocalDateTime[]>();
 
-    public void marcarReuniaoEntre(LocalDate dataInicial, LocalDate dataFinal, Collection<String> listaDeParticipantes)
+    static void marcarReuniaoEntre(LocalDate dataInicial, LocalDate dataFinal, Collection<String> listaDeParticipantes)
     {
         inicioReuniao = dataInicial;
         finalReuniao = dataFinal;
         
         for(String participante : listaDeParticipantes)
             listaDePessoas.add(new Participante(participante));
+        System.out.println("shvbjknlk");
     }
 
-    public void indicaDisponibilidade(String participante, LocalDateTime inicio, LocalDateTime fim) 
+    static void indicaDisponibilidade(String participante, LocalDateTime inicio, LocalDateTime fim) 
     {
         int i = 0;
         while(i < listaDePessoas.size())
@@ -39,7 +40,7 @@ public class MarcadorReuniao
         }
     }
 
-    public void carregaTempoMinimo(int tempo)
+    static void carregaTempoMinimo(int tempo)
     {
         tempoMinimo = tempo;
     }
@@ -145,7 +146,7 @@ public class MarcadorReuniao
         }
     }
 
-    public void mostraSobreposicao() 
+    static void mostraSobreposicao() 
     {
         calculaInteseccoes(0, new LocalDateTime[2]);
         
@@ -156,4 +157,5 @@ public class MarcadorReuniao
             System.out.println( "Horario de fim: " + interseccoes.get(i)[1] + "\n");
         }
     }
+
 }
